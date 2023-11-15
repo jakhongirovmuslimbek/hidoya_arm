@@ -1,0 +1,130 @@
+{
+  "todotree": {
+    "tree": [
+      {
+        "key": 1699939557809,
+        "children": [
+          {
+            "key": 1699939571132,
+            "children": [],
+            "todo": {
+              "content": "categories (CRUD)",
+              "id": 1699939571132,
+              "level": "default",
+              "done": true,
+              "start": 1699939571132,
+              "focus": false,
+              "end": 1699940866675
+            }
+          },
+          {
+            "key": 1699939617937,
+            "children": [],
+            "todo": {
+              "content": "books (CRUD)",
+              "id": 1699939617937,
+              "level": "default",
+              "done": true,
+              "start": 1699939617937,
+              "focus": false,
+              "end": 1699940869083
+            }
+          },
+          {
+            "key": 1699939656125,
+            "children": [],
+            "todo": {
+              "content": "e-categories (CRUD)",
+              "id": 1699939656125,
+              "level": "default",
+              "done": true,
+              "start": 1699939656125,
+              "focus": false,
+              "end": 1699940871255
+            }
+          },
+          {
+            "key": 1699939669653,
+            "children": [],
+            "todo": {
+              "content": "e-books (CRUD)",
+              "id": 1699939669653,
+              "level": "default",
+              "done": true,
+              "start": 1699939669653,
+              "focus": false,
+              "end": 1699940872831
+            }
+          }
+        ],
+        "todo": {
+          "content": "BOOKS",
+          "id": 1699939557809,
+          "level": "default",
+          "done": false,
+          "start": 1699939557809
+        }
+      },
+      {
+        "key": 1699939734002,
+        "children": [
+          {
+            "key": 1699939747270,
+            "children": [],
+            "todo": {
+              "content": "talabalar (CRUD)",
+              "id": 1699939747270,
+              "level": "default",
+              "done": false,
+              "start": 1699939747270
+            }
+          },
+          {
+            "key": 1699939761502,
+            "children": [],
+            "todo": {
+              "content": "o'qituvchilar (CRUD)",
+              "id": 1699939761502,
+              "level": "default",
+              "done": false,
+              "start": 1699939761502
+            }
+          }
+        ],
+        "todo": {
+          "content": "USERS",
+          "id": 1699939734002,
+          "level": "default",
+          "done": false,
+          "start": 1699939734002
+        }
+      },
+      {
+        "key": 1699939818851,
+        "children": [],
+        "todo": {
+          "content": "ORDERS",
+          "id": 1699939818851,
+          "level": "default",
+          "done": false,
+          "start": 1699939818851
+        }
+      }
+    ],
+    "expandKeys": [
+      1699939557809,
+      1699939734002
+    ],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
+    "add_mode": "bottom",
+    "virtual": false,
+    "showLine": false,
+    "playFontSize": 24,
+    "title": "library",
+    "autoSort": false,
+    "showEndTime": false,
+    "simpleMode": false,
+    "lang": "en",
+    "version": "1699940873121"
+  }
+}
