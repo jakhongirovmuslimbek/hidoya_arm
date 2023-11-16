@@ -14,6 +14,7 @@ class E_Category(models.Model):
         self.slug=slugify(self.title)
         return super().save(*args,**kwargs)
     
+    
     class Meta:
         verbose_name_plural="Kategoriyasi"
         verbose_name="kategoriya "
