@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,8 +45,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     "corsheaders",
 
+
     #local apps
     'books',
+    'e_books',
     'orders',
     'users',
 ]
@@ -115,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uz-uz'
 
 TIME_ZONE = 'UTC'
 
@@ -127,16 +130,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# STATIC_URL = '/static/'
-# MEDIA_URL = "/media/"
-# STATIC_ROOT = BASE_DIR / "static"
-# STATICFILES_DIRS = [BASE_DIR / 'static']
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_ROOT = '/home/jakhongirov/hidoya_arm/media'
-MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/jakhongirov/hidoya_arm/static'
 STATIC_URL = '/static/'
+MEDIA_URL = "/media/"
+# STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [BASE_DIR / 'static']
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MEDIA_ROOT = '/home/jakhongirov/hidoya_arm/media'
+# MEDIA_URL = '/media/'
+# STATIC_ROOT = '/home/jakhongirov/hidoya_arm/static'
+# STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -147,6 +150,36 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL="users.UserProfile"
 
 from .conf.simple_jwt import SIMPLE_JWT
+from .conf.jazzman import JAZZMIN_SETTINGS
+JAZZMIN_UI_TWEAKS = {
+    #LIGHT 
+
+    # "theme": "cerulean",
+    # "theme": "cosmo",
+    # "theme": "flatly",
+    # "theme": "journal",
+    "theme": "litera",#+
+    # "theme": "lumen",
+    # "theme": "lux",
+    # "theme": "materia",
+    # "theme": "minty",
+    # "theme": "pulse",
+    # "theme": "sandstone",
+    # "theme": "simplex",
+    # "theme": "sketchy",
+    # "theme": "spacelab",
+    # "theme": "united",
+    # "theme": "yeti",
+
+    # DARK
+
+    # "theme":"darkly",
+    # "theme":"cyborg",
+    # "theme":"slate",
+    # "theme":"solar",
+    # "theme":"superhero",
+
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
