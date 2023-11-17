@@ -33,11 +33,12 @@ class Order(models.Model):
         error_messages={
             "invalid": _("Bu kitobdan kutubxonada qolmagan."),
         },)
-
     status = models.CharField(max_length=255, choices=STATUS_TYPE, default='topshirilmagan',verbose_name="status")
     created_date = models.DateTimeField(auto_now_add=True,verbose_name="berilgan sana")
     return_date = models.DateTimeField(blank=True, null=True,verbose_name="qaytarilgan sana")
     objects = BookManager()
+
+
 
     def save(self,*args,**kwargs):
         if self.status == 'topshirilgan' and not self.return_date:

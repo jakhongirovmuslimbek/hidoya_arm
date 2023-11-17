@@ -27,7 +27,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Hidoya ARMga xush kelibsiz",
 
     # Copyright on the footer
-    "copyright": "Fazo Software Services LLC",
+    "copyright": "<br/>Fazo Software Services LLC <br/>tel:<a href='tel:+998500045035'>+998500045035</a><br/>telegram:<a href='https://t.me/Komiljonov_O'>@Komiljonov_O</a>",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 
@@ -61,10 +61,10 @@ JAZZMIN_SETTINGS = {
     #############
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
-    # "usermenu_links": [
-        # {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+    "usermenu_links": [
+        {"name": "Savollar uchun","icon":"fas fa-question-circle","url": "https://t.me/Komiljonov_O", "new_window": True},
         # {"model": "auth.user"}
-    # ],
+    ],
 
     #############
     # Side Menu #

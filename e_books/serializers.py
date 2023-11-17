@@ -16,14 +16,3 @@ class E_BookSerializer(serializers.ModelSerializer):
         request = self.context.get("request", None)
         if request and request.method == "GET":
             self.fields['category'] = E_CategorySerializer()
-
-
-
-
-
-
-
-
-
-
-            
