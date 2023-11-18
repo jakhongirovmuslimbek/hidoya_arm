@@ -1,6 +1,5 @@
-from collections.abc import Iterable
 from django.db import models
-from django.contrib.auth import get_user_model
+from users.models import User
 from books.models import *
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -26,36 +25,32 @@ class Order(models.Model):
         ('topshirilgan', 'Topshirilgan'),
         ('topshirilmagan', 'Topshirilmagan'),
     )
-    user = models.ForeignKey(get_user_model(), related_name="user_orders", on_delete=models.PROTECT,verbose_name="foydalanuvchi")
-    book = models.ForeignKey(Book,related_name="book_orders", on_delete=models.PROTECT,verbose_name="kitob",
-        validators=[book_validator],
+    user = models.ForeignKey(User, related_name="user_orders", on_delete=models.PROTECT,verbose_name="foydalanuvchi")
+    books = models.ManyToManyField(Book,related_name="book_orders", verbose_name="kitoblar",
         limit_choices_to={'amount__gt': 0},
-        error_messages={
-            "invalid": _("Bu kitobdan kutubxonada qolmagan."),
-        },)
+        )
     status = models.CharField(max_length=255, choices=STATUS_TYPE, default='topshirilmagan',verbose_name="status")
-    created_date = models.DateTimeField(auto_now_add=True,verbose_name="berilgan sana")
-    return_date = models.DateTimeField(blank=True, null=True,verbose_name="qaytarilgan sana")
+    created_date = models.DateField(blank=True, null=True, verbose_name="berilgan sana")
+    return_date = models.DateField(blank=True, null=True,verbose_name="qaytarish sana")
     objects = BookManager()
 
 
 
-    def save(self,*args,**kwargs):
+    def save(self,create=None,*args,**kwargs):
         if self.status == 'topshirilgan' and not self.return_date:
             self.return_date = timezone.now()
         super().save(*args, **kwargs)
+        if create:
+            print(self.__dict__)
+            print(args,kwargs)
+            books=self.books.all()
+            for book in books:
+                book.amount-=1
+                book.save()
+                print(book.amount)
 
     def create(self,*args, **kwargs):
-        if self.book.amount>0:
-            book=self.book
-            book.amount-=1
-            book.save()
-            super().save(*args, **kwargs)
-        else:
-            raise "miqdori kam"
-    
-    def __str__(self):
-        return f"{self.user.get_username()} : {self.book.title}"
+        self.save(create=True,*args, **kwargs)
     
     class Meta:
         verbose_name_plural="Kitob Berish"

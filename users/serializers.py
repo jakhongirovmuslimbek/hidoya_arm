@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Course
+from .models import Course, User
 from orders.serializers import OrderSerializer
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -9,25 +9,21 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)     
     user_orders=serializers.SerializerMethodField("get_user_orders")
 
     class Meta:
-        model = get_user_model()
+        model = User
         fields = [
             "id",
-            "username",
-            "email",
-            "password",
             "first_name",
             "last_name",
             "middle_name",
             "course",
-            "image",
-            "type_user",
+            "group",
+            "adress",
+            "user_type",
             "user_orders",
         ]
-        extra_kwargs = {'password': {'write_only': True}}
 
     def get_user_orders(self, obj):
         request=self.context['request']
@@ -40,18 +36,10 @@ class UserSerializer(serializers.ModelSerializer):
         else:
             return len(obj.get_user_orders) if obj.get_user_orders else 0
 
-    def update(self, instance, validated_data):
-        password = validated_data.pop('password')
-        instance.set_password(password)
-        instance.save()
-        return super().update(instance, validated_data)
+    
 
-    def create(self, validated_data):
-        password = validated_data.pop('password')
-        user = get_user_model().objects.create_user(**validated_data)
-        user.set_password(password)
-        user.save()
-        return user
+
+
     
     # def __init__(self, *args, **kwargs):
     #     super(UserSerializer, self).__init__(*args, **kwargs)

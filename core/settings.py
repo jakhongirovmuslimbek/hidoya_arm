@@ -146,9 +146,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# MY CONF
-AUTH_USER_MODEL="users.UserProfile"
-
 from .conf.simple_jwt import SIMPLE_JWT
 from .conf.jazzman import JAZZMIN_SETTINGS
 JAZZMIN_UI_TWEAKS = {

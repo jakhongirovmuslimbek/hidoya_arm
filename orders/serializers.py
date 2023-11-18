@@ -10,13 +10,11 @@ class OrderSerializer(serializers.ModelSerializer):
         user=obj.user
         data={
             "id": user.id,
-            "username": user.username,
-            "email": user.email,
             "first_name": user.first_name,
             "last_name":user.last_name,
             "middle_name":user.middle_name,
             "course": user.course.title if user.course else None,
-            "type_user": user.type_user
+            "user_type": user.user_type
         }
         return data
     

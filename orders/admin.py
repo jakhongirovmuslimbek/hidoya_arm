@@ -5,8 +5,9 @@ from django.utils.html import format_html
 
 # Register your models here.
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["display_user","display_course", "display_book","display_book_code","display_status","created_date","return_date"]
-    list_filter=['status',"created_date","return_date"]
+    list_display = ["id","display_user","display_course", "display_status","created_date","return_date"]
+    list_display_links=["display_user"]
+    list_filter=["user__first_name","user__last_name","books__title",'status',"created_date","return_date"]
     def display_user(self, obj: Order) -> str:
         return f"{obj.user.first_name} {obj.user.last_name} {obj.user.middle_name  if obj.user.middle_name else '-'}" 
     display_user.short_description = "Foydalanuvchi F.I.Sh"
@@ -16,14 +17,6 @@ class OrderAdmin(admin.ModelAdmin):
     def display_course(self, obj: Order) -> str:
         return obj.user.course
     display_course.short_description = "Kursi"
-
-    def display_book(self, obj: Order) -> str:
-        return obj.book.title
-    display_book.short_description = "Kitob" 
-
-    def display_book_code(self, obj: Order) -> str:
-        return obj.book.code_number
-    display_book_code.short_description = "Kitob kodi" 
 
     def display_status(self, obj: Order) -> str:
         if obj.status == 'topshirilgan':
