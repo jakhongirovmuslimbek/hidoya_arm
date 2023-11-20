@@ -34,9 +34,7 @@ class Order(models.Model):
     return_date = models.DateField(blank=True, null=True,verbose_name="qaytarish sana")
     objects = BookManager()
 
-
-
-    def save(self,create=None,*args,**kwargs):
+    def save(self,create=None,*args,**kwargs):  
         if self.status == 'topshirilgan' and not self.return_date:
             self.return_date = timezone.now()
         super().save(*args, **kwargs)
