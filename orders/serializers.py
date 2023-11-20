@@ -19,12 +19,14 @@ class OrderSerializer(serializers.ModelSerializer):
         return data
     
     def get_book(self,obj):
-        book=obj.book
-        data={
-            "id": book.id,
-            "title": book.title,
-            "code_number": book.code_number,
-        }
+        books=obj.books.all()
+        data=[]
+        for book in books:
+            data.append({
+                "id": book.id,
+                "title": book.title,
+                "number_inv": book.number_inv,
+            })
         return data
 
     def __init__(self, *args, **kwargs):
