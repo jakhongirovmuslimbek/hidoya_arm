@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     #global apps
     'rest_framework',
     'rest_framework.authtoken',
@@ -130,6 +130,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+<<<<<<< HEAD
 STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
 # STATIC_ROOT = BASE_DIR / "static"
@@ -139,7 +140,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_ROOT = '/home/hidoya/hidoya_arm/media'
 # MEDIA_URL = '/media/'
 # STATIC_ROOT = '/home/hidoya/hidoya_arm/static'
+=======
+>>>>>>> 71c1207cdcb710795fff15624666723e0b9584b2
 # STATIC_URL = '/static/'
+# MEDIA_URL = "/media/"
+# STATIC_ROOT = BASE_DIR / "static"
+# STATICFILES_DIRS = [BASE_DIR / 'static']
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_ROOT = '/home/hidoya/hidoya_arm/media'
+MEDIA_URL = '/media/'
+STATIC_ROOT = '/home/hidoya/hidoya_arm/static'
+STATIC_URL = '/static/'
+
 
 
 # Default primary key field type
@@ -150,7 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from .conf.simple_jwt import SIMPLE_JWT
 from .conf.jazzman import JAZZMIN_SETTINGS
 JAZZMIN_UI_TWEAKS = {
-    #LIGHT 
+    #LIGHT
 
     # "theme": "cerulean",
     # "theme": "cosmo",
@@ -187,7 +200,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
+CORS_ALLOW_ALL_ORIGINS=True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:9000"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:9000"
+# ]
