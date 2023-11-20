@@ -27,29 +27,41 @@ class Order(models.Model):
     )
     user = models.ForeignKey(User, related_name="user_orders", on_delete=models.PROTECT,verbose_name="foydalanuvchi")
     books = models.ManyToManyField(Book,related_name="book_orders", verbose_name="kitoblar",
-        limit_choices_to={'amount__gt': 0},
+        # limit_choices_to={'amount__gt': 0},
+        error_messages={
+            "invalid":{
+                "Bu kitobdan kutubxonada qolmagan."
+            }
+        }
         )
     status = models.CharField(max_length=255, choices=STATUS_TYPE, default='topshirilmagan',verbose_name="status")
     created_date = models.DateField(blank=True, null=True, verbose_name="berilgan sana")
     return_date = models.DateField(blank=True, null=True,verbose_name="qaytarish sana")
     objects = BookManager()
 
-    def save(self,create=None,*args,**kwargs):  
-        if self.status == 'topshirilgan' and not self.return_date:
-            self.return_date = timezone.now()
-        super().save(*args, **kwargs)
+    def save(self,create=None,books=None,*args,**kwargs):
+        if self.status == 'topshirilgan' and create==None:
+            status=Order.objects.get(id=self.id).status
+            if self.status!=status:
+                for book in self.books.all():
+                    book.amount+=1
+                    book.save()
         if create:
-            print(self.__dict__)
-            print(args,kwargs)
-            books=self.books.all()
-            for book in books:
-                book.amount-=1
-                book.save()
-                print(book.amount)
+            for id in books:
+                book=Book.objects.get(id=id)
+                if book.amount:
+                    book.amount-=1
+                    book.save()
+                else:
+                    raise ValidationError(
+                                _("Bu kitobdan kutubxonada qolmagan."),
+                                code="invalid",
+                            )
+        super().save(*args, **kwargs)
 
-    def create(self,*args, **kwargs):
-        self.save(create=True,*args, **kwargs)
-    
+    def create(self,books,*args, **kwargs):
+        self.save(create=True,books=books,*args, **kwargs)
+
     class Meta:
         verbose_name_plural="Kitob Berish"
         verbose_name="kitob berish "
