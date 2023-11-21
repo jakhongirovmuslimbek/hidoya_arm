@@ -5,7 +5,8 @@ from rest_framework_simplejwt.views import (
 )
 from django.urls import path
 from rest_framework_simplejwt.serializers import Dict,Any,api_settings,update_last_login,TokenObtainSerializer
-from .serializers import UserSerializer
+from .serializers import AuthUserSerializer
+from .views import ProfileView
 
 class CustomTokenObtainPairSerializer(TokenObtainSerializer):
     token_class = RefreshToken
@@ -17,7 +18,7 @@ class CustomTokenObtainPairSerializer(TokenObtainSerializer):
 
         data["refresh"] = str(refresh)
         data["access"] = str(refresh.access_token)
-        data['user']=UserSerializer(self.user,many=False,context=self.context).data
+        data['user']=AuthUserSerializer(self.user,many=False,context=self.context).data
         
         if api_settings.UPDATE_LAST_LOGIN:
             update_last_login(None, self.user)
@@ -27,6 +28,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
 urlpatterns = [
+    path('profile/', ProfileView.as_view(), name="profile"),
     path('users/token/', CustomTokenObtainPairView.as_view()),
-    path('users/token/refresh/', TokenRefreshView.as_view())
-]
+    path('users/token/refresh/', TokenRefreshView.as_view()),
+]   
