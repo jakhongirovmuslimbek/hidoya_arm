@@ -18,3 +18,4 @@ router.register("orders", OrderViewSet, basename="orders")
 # Users
 router.register("course", CourseViewSet, basename="course")
 router.register("users", UserViewSet, basename="users")
+router.register("auth_user", AuthUserViewSet, basename="auth_user")
