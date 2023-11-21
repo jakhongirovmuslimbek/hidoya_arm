@@ -35,6 +35,6 @@ class OrderSerializer(serializers.ModelSerializer):
         request = self.context.get("request", None)
         if request and request.method == "GET":
             self.fields['user'] = serializers.SerializerMethodField("get_user")
-            self.fields['book'] = serializers.SerializerMethodField("get_book")
+            self.fields['books'] = serializers.SerializerMethodField("get_book")
 
 
