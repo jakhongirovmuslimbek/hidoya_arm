@@ -15,7 +15,7 @@ class AuthUserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = [
             "id",
-            "username",
+            "username", 
             "first_name",
             "password",
         ]
