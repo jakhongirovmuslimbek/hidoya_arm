@@ -9,7 +9,7 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class UserSerializer(serializers.ModelSerializer):
-    get_user_orders = serializers.SerializerMethodField("get_user_orders")
+    user_orders = serializers.SerializerMethodField("get_user_orders")
 
     class Meta:
         model = User
@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
             "group",
             "address",
             "user_type",
-            "get_user_orders",
+            "user_orders",
         ]
 
     def get_user_orders(self, obj):
