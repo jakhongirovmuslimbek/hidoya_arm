@@ -15,6 +15,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 class ProfileView(views.APIView):
     permission_classes=[permissions.IsAdminUser]
+    
     def get_user(self):
         return self.request.user
 
