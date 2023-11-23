@@ -1,7 +1,7 @@
 from rest_framework import viewsets, views, permissions
 from rest_framework.response import Response
-from .serializers import UserSerializer, CourseSerializer, AuthUserSerializer
-from .models import Course, User
+from .serializers import UserSerializer, CourseSerializer, AuthUserSerializer, GroupSerializer
+from .models import Course, User, Group
 from django.contrib.auth import get_user_model
 
 
@@ -13,8 +13,13 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
 class ProfileView(views.APIView):
     permission_classes=[permissions.IsAdminUser]
+    
     def get_user(self):
         return self.request.user
 
@@ -31,36 +36,3 @@ class ProfileView(views.APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # if pk is not None:
-        #     user = get_user_model().objects.get(pk=pk)
-        #     serializer = AuthUserSerializer(user, data=request.data)
-        #     if serializer.is_valid():
-        #         serializer.save()
-        #         return Response(serializer.data)
-        #     else:
-        #         return Response(serializer.errros)
-
-
-        

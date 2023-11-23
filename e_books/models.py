@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.files.storage import default_storage
 
-# e-books
 class E_Category(models.Model):
     title = models.CharField(max_length=255,verbose_name="nomi",unique=True)    
     slug = models.SlugField(editable=False)

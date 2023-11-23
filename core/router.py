@@ -16,5 +16,6 @@ router.register("e-books", E_BookViewSet, basename="e-books")
 # Orders
 router.register("orders", OrderViewSet, basename="orders")
 # Users
-router.register("course", CourseViewSet, basename="course")
+router.register("course", CourseViewSet, basename="courses")
+router.register("groups", GroupViewSet, basename="groups")
 router.register("users", UserViewSet, basename="users")

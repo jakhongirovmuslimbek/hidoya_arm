@@ -1,11 +1,16 @@
 from rest_framework import serializers
-from .models import Course, User
+from .models import Course, User, Group
 from orders.serializers import OrderSerializer
 from django.contrib.auth import get_user_model
 
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
+        fields = "__all__"
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
         fields = "__all__"
 
 class AuthUserSerializer(serializers.ModelSerializer):
@@ -51,10 +56,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
     
-
-
-
-
 # def __init__(self, *args, **kwargs):
 #     super(UserSerializer, self).__init__(*args, **kwargs)
 #     request = self.context.get("request", None)
