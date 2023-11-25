@@ -20,7 +20,7 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Book
         fields = "__all__"
-
+    
     def __init__(self, *args, **kwargs):
         super(BookSerializer, self).__init__(*args, **kwargs)
         request = self.context.get("request", None)
