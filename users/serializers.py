@@ -55,6 +55,12 @@ class UserSerializer(serializers.ModelSerializer):
             return len(obj.get_user_orders) if obj.get_user_orders else 0
 
 
+    def __init__(self, *args, **kwargs):
+        super(UserSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get("request", None)
+        if request and request.method == "GET":
+            self.fields['course'] = CourseSerializer()
+            self.fields['group'] = GroupSerializer()
     
 # def __init__(self, *args, **kwargs):
 #     super(UserSerializer, self).__init__(*args, **kwargs)
