@@ -10,7 +10,7 @@ class AlphabetSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Alphabet
         fields = "__all__"
-        
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
@@ -25,4 +25,6 @@ class BookSerializer(serializers.ModelSerializer):
         super(BookSerializer, self).__init__(*args, **kwargs)
         request = self.context.get("request", None)
         if request and request.method == "GET":
+            self.fields['language'] = LanguageSerializer()
+            self.fields['alphabet'] = AlphabetSerializer()
             self.fields['category'] = CategorySerializer()
