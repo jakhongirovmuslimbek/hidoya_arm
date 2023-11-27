@@ -36,14 +36,3 @@ class OrderSerializer(serializers.ModelSerializer):
         if request and request.method == "GET":
             self.fields['user'] = serializers.SerializerMethodField("get_user")
             self.fields['books'] = serializers.SerializerMethodField("get_book")
-<<<<<<< HEAD
-
-
-
-    # def __init__(self, *args, **kwargs):
-        # super(BookSerializer, self).__init__(*args, **kwargs)
-        # request = self.context.get("request", None)
-        # if request and request.method == "GET":
-            # self.fields['category'] = CategorySerializer()
-=======
->>>>>>> e9a64fee0f6482eaeb918931e643212121606d07
