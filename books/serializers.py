@@ -10,7 +10,7 @@ class AlphabetSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Alphabet
         fields = "__all__"
-        
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category

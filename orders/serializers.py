@@ -18,7 +18,7 @@ class OrderSerializer(serializers.ModelSerializer):
             "user_type": user.user_type
         }
         return data
-    
+
     def get_book(self,obj):
         books=obj.books.all()
         data=[]
@@ -37,4 +37,10 @@ class OrderSerializer(serializers.ModelSerializer):
         if request and request.method == "GET":
             self.fields['user'] = serializers.SerializerMethodField("get_user")
             self.fields['books'] = serializers.SerializerMethodField("get_book")
-    
+
+
+    # def __init__(self, *args, **kwargs):
+        # super(BookSerializer, self).__init__(*args, **kwargs)
+        # request = self.context.get("request", None)
+        # if request and request.method == "GET":
+            # self.fields['category'] = CategorySerializer()
