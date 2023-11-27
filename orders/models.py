@@ -15,9 +15,11 @@ def book_validator(value):
 
 class BookManager(models.Manager):
     def create(self, **kwargs):
-        book=kwargs['book']
-        book.amount-=1
-        book.save()
+        # print(kwargs)
+        # books=kwargs['books']
+        # for book in books:
+        #     book.amount-=1
+        #     book.save()
         return super().create(**kwargs)
 
 class Order(models.Model):

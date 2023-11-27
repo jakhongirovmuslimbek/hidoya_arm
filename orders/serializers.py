@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from . import models
+from books.models import Book
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,3 +37,4 @@ class OrderSerializer(serializers.ModelSerializer):
         if request and request.method == "GET":
             self.fields['user'] = serializers.SerializerMethodField("get_user")
             self.fields['books'] = serializers.SerializerMethodField("get_book")
+    
