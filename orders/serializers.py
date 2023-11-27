@@ -34,13 +34,20 @@ class OrderSerializer(serializers.ModelSerializer):
         from books.serializers import BookSerializer
         super(OrderSerializer, self).__init__(*args, **kwargs)
         request = self.context.get("request", None)
+        # print(request)
         if request and request.method == "GET":
-            self.fields['user'] = serializers.SerializerMethodField("get_user")
-            self.fields['books'] = serializers.SerializerMethodField("get_book")
+            order=request.GET.get("order",None)
+            user=request.GET.get("user",None)
+            if user:
+                self.fields['user'] = serializers.SerializerMethodField("get_user")
+            if order:
+                self.fields['books'] = serializers.SerializerMethodField("get_book")
 
-
-    # def __init__(self, *args, **kwargs):
-        # super(BookSerializer, self).__init__(*args, **kwargs)
-        # request = self.context.get("request", None)
-        # if request and request.method == "GET":
-            # self.fields['category'] = CategorySerializer()
+    def create(self, validated_data):
+        # print(validated_data)
+        books=validated_data['books']
+        for book in books:
+            book.amount-=1
+            book.save()
+        return super().create(validated_data)
+    
