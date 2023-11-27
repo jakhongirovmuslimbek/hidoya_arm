@@ -13,13 +13,6 @@ def book_validator(value):
             code="invalid",
         )
 
-class BookManager(models.Manager):
-    def create(self, **kwargs):
-        book=kwargs['book']
-        book.amount-=1
-        book.save()
-        return super().create(**kwargs)
-
 class Order(models.Model):
     STATUS_TYPE = ( 
         ('topshirilgan', 'Topshirilgan'),
@@ -37,7 +30,6 @@ class Order(models.Model):
     status = models.CharField(max_length=255, choices=STATUS_TYPE, default='topshirilmagan',verbose_name="status")
     created_date = models.DateField(blank=True, null=True, verbose_name="berilgan sana")
     return_date = models.DateField(blank=True, null=True,verbose_name="qaytarish sana")
-    objects = BookManager()
 
     def save(self,create=None,books=None,*args,**kwargs):
         if self.status == 'topshirilgan' and create==None:

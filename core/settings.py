@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     "corsheaders",
+    'drf_yasg',
 
 
     #local apps
@@ -114,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -131,15 +131,14 @@ USE_TZ = True
 
 # STATIC_URL = '/static/'
 # MEDIA_URL = "/media/"
-# # STATIC_ROOT = BASE_DIR / "static"
-# STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATIC_ROOT = BASE_DIR / "static"
+# # STATICFILES_DIRS = [BASE_DIR / 'static']
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_ROOT = '/home/hidoya/hidoya_arm/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/hidoya/hidoya_arm/static'
 STATIC_URL = '/static/'
-
 
 
 # Default primary key field type

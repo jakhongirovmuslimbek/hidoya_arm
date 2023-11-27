@@ -43,9 +43,9 @@ class User(models.Model):
     )
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    middle_name = models.CharField(max_length=255, blank=True, null=True,verbose_name="Sharif")
-    course = models.ForeignKey(Course, related_name="users", on_delete=models.CASCADE, blank=True, null=True,verbose_name="kurs")
-    group = models.ForeignKey(Group, related_name="users", on_delete=models.CASCADE, blank=True, null=True,verbose_name="guruh")
+    middle_name = models.CharField(max_length=255, blank=True, null=True,verbose_name="Sharif", default="-")
+    course = models.ForeignKey(Course, related_name="users", on_delete=models.CASCADE, blank=True, null=True,verbose_name="kurs", default="-")
+    group = models.ForeignKey(Group, related_name="users", on_delete=models.CASCADE, blank=True, null=True,verbose_name="guruh", default="-")
     address=models.CharField(max_length=255,default="-",verbose_name="manzil")
     user_type = models.CharField(max_length=255, choices=USER_TYPE, default="talaba", verbose_name="lavozim")
 
